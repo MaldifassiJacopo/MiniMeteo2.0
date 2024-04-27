@@ -1,0 +1,43 @@
+<div class="container text-center mt-5">
+    <div class="container text-center py-5" style="background-color: rgba(82, 199, 184, 0.8); color: white; border-radius: 15px; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <h1 class="display-4 mb-4"><strong>Ricerca Meteo</strong></h1>
+          <h2>Scopri le previsioni del tempo per la tua città</h2>
+          <div class="input-group mt-3">
+            <input type="text" #newquery class="form-control" placeholder="Inserisci il nome della città">
+            <div class="input-group-append">
+              <button (click)="submit(newquery)" class="btn btn-success">Cerca</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="results" class="container mt-5">
+        <div class="container text-center py-5" style="background-color: rgba(195, 236, 231, 0.8); color: rgba(0, 0, 0, 0.8); border-radius: 15px; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);">
+          <h3 class="card-title mb-0">Previsioni Meteo per {{ results.name }} ({{ results.sys.country}})</h3>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <p class="card-text h5"><strong>Condizioni Meteo:</strong> {{ results.weather[0].description }}</p>
+                <p class="card-text h5"><strong>Temperatura:</strong> {{ results.main.temp }} °C</p>
+                <p class="card-text h5"><strong>Temperatura percepita:</strong> {{ results.main.feels_like }} °C</p>
+                <p class="card-text h5"><strong>Temperatura Minima:</strong> {{ results.main.temp_min }} °C</p>
+                <p class="card-text h5"><strong>Temperatura Massima:</strong> {{ results.main.temp_max }} °C</p>
+                <p class="card-text h5"><strong>Umidità:</strong> {{ results.main.humidity }} %</p>
+              </div>
+              <div class="col-md-6">
+                <p class="card-text h5"><strong>Visibilità:</strong> {{ results.visibility }} metri</p>
+                <p class="card-text h5"><strong>Pioggia (ultima ora):</strong> {{ results.rain?.['1h'] || '0' }} mm</p>
+                <p class="card-text h5"><strong>Nuvolosità:</strong> {{ results.clouds.all }}%</p>
+                <p class="card-text h5"><strong>Velocità del Vento:</strong> {{ results.wind.speed }} m/s</p>
+              </div>
+            </div>
+            <img src="http://openweathermap.org/img/wn/{{ results.weather[0].icon }}@4x.png"
+                 alt="Icona Meteo"
+                 class="img-fluid mt-3 w-25 mx-auto d-block">
+          </div>
+        </div>
+      </div>
+      
