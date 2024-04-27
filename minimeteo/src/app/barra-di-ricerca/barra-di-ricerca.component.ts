@@ -15,7 +15,7 @@ export class BarraDiRicercaComponent {
 
   constructor(private http:HttpClient) { 
   }
-  Token='8db500fac7d0bc78a5615c92ddbfde5a'
+  Token='e2a83a19e1a956c4a374f915a48841cc'
  
   submit(query: HTMLInputElement): void {
     if (!query.value) {
